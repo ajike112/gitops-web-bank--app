@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: web-bank-app-config
+data:
+  APP_NAME: "Web Bank App"
+  LOG_LEVEL: "info"
