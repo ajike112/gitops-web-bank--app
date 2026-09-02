@@ -1,0 +1,19 @@
+replicaCount: 2
+
+image:
+  repository: 536697262404.dkr.ecr.us-east-1.amazonaws.com/jenkins-app-repo
+  tag: "79"                # Jenkins updates this automatically
+  pullPolicy: IfNotPresent
+
+service:
+  type: LoadBalancer
+  port: 80
+  targetPort: 3000
+
+resources:
+  limits:
+    cpu: 500m
+    memory: 512Mi
+  requests:
+    cpu: 250m
+    memory: 256Mi

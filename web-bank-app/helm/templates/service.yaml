@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-bank-app-service
+  labels:
+    app: web-bank-app
+spec:
+  type: {{ .Values.service.type }}
+  selector:
+    app: web-bank-app
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: {{ .Values.service.targetPort }}

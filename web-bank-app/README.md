@@ -1,5 +1,3 @@
-# gitops-web-bank--app
-
 # GitOps Repository — web-bank-app
 
 This repository contains Kubernetes manifests and Helm charts for deploying the **Web Bank App** to EKS via ArgoCD.
