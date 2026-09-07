@@ -19,6 +19,7 @@ spec:
       labels:
         app: web-bank-app
     spec:
+      serviceAccountName: web-bank-app-sa
       containers:
         - name: web-bank-app
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"

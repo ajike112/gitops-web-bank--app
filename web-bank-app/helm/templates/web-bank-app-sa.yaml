@@ -4,4 +4,4 @@ metadata:
   name: web-bank-app-sa
   namespace: {{ .Release.Namespace }}
   annotations:
-    eks.amazonaws.com/role-arn: arn:aws:iam::<ACCOUNT_ID>:role/web-bank-app-irsa
+    eks.amazonaws.com/role-arn: arn:aws:iam::536697262404:role/web-bank-app-irsa
