@@ -1,5 +1,14 @@
 replicaCount: 3
+
 image:
-  tag: "latest"
-service:
-  type: LoadBalancer
+  tag: "prod-${BUILD_NUMBER}"
+  pullPolicy: IfNotPresent
+
+resources:
+  limits:
+    cpu: 1
+    memory: 1Gi
+  requests:
+    cpu: 500m
+    memory: 512Mi
+

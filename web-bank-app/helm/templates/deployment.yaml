@@ -25,7 +25,6 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - containerPort: 3000
-
           resources:
             limits:
               cpu: {{ .Values.resources.limits.cpu }}
@@ -33,20 +32,16 @@ spec:
             requests:
               cpu: {{ .Values.resources.requests.cpu }}
               memory: {{ .Values.resources.requests.memory }}
-
           env:
             - name: NODE_ENV
               value: "production"
-
           envFrom:
             - configMapRef:
                 name: web-bank-app-config
-
           volumeMounts:
             - name: secrets-store
               mountPath: "/mnt/secrets"
               readOnly: true
-
       volumes:
         - name: secrets-store
           csi:
