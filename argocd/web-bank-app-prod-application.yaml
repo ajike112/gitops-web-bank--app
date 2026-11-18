@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: web-bank-app-prod
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/ajike112/gitops-web-bank--app.git
+    targetRevision: master
+    path: web-bank-app/helm
+    helm:
+      valueFiles:
+        - overlays/prod/values-prod.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: web-bank-app-prod
+  # Manual sync for prod: changes merged to master deploy to dev automatically,
+  # but prod only updates when someone clicks Sync (or runs `argocd app sync`).
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true

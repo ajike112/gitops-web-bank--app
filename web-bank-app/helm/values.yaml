@@ -1,5 +1,8 @@
 replicaCount: 2
 
+# Runtime environment passed to the app as NODE_ENV
+nodeEnv: production
+
 image:
   repository: 536697262404.dkr.ecr.us-east-1.amazonaws.com/jenkins-app-repo
   tag: "79"                # Jenkins updates this automatically

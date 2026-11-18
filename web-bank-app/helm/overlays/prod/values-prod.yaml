@@ -1,4 +1,5 @@
 replicaCount: 3
+nodeEnv: production
 
 # Image tag is inherited from the base values.yaml (updated by Jenkins).
 # Helm does not expand ${ENV_VARS}, so don't put placeholders here.
