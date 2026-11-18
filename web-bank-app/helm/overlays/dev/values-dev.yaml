@@ -1,8 +1,15 @@
 replicaCount: 1
 
+# Image tag is inherited from the base values.yaml (updated by Jenkins).
+# Helm does not expand ${ENV_VARS}, so don't put placeholders here.
 image:
-  tag: "dev-${BUILD_NUMBER}"
   pullPolicy: IfNotPresent
+
+autoscaling:
+  enabled: true
+  minReplicas: 1
+  maxReplicas: 3
+  targetCPUUtilizationPercentage: 70
 
 resources:
   limits:

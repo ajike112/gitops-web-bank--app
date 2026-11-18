@@ -5,6 +5,15 @@ image:
   tag: "79"                # Jenkins updates this automatically
   pullPolicy: IfNotPresent
 
+# When enabled, the HPA owns the replica count and the Deployment omits
+# `replicas`, so ArgoCD self-heal doesn't fight the autoscaler.
+# replicaCount is only used when autoscaling is disabled.
+autoscaling:
+  enabled: true
+  minReplicas: 2
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 70
+
 service:
   type: LoadBalancer
   port: 80
