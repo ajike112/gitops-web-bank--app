@@ -14,8 +14,10 @@ autoscaling:
   maxReplicas: 10
   targetCPUUtilizationPercentage: 70
 
+# ClusterIP: external traffic enters via the ALB Ingress (target-type: ip
+# routes straight to pod IPs), so a separate cloud load balancer isn't needed.
 service:
-  type: LoadBalancer
+  type: ClusterIP
   port: 80
   targetPort: 3000
 
