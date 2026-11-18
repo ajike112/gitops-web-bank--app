@@ -27,7 +27,18 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
-            - containerPort: 3000
+            - name: http
+              containerPort: {{ .Values.service.targetPort }}
+          readinessProbe:
+            httpGet:
+              path: {{ .Values.probes.path }}
+              port: http
+            {{- toYaml .Values.probes.readiness | nindent 12 }}
+          livenessProbe:
+            httpGet:
+              path: {{ .Values.probes.path }}
+              port: http
+            {{- toYaml .Values.probes.liveness | nindent 12 }}
           resources:
             limits:
               cpu: {{ .Values.resources.limits.cpu }}
@@ -38,6 +49,12 @@ spec:
           env:
             - name: NODE_ENV
               value: "production"
+            # Synced from AWS Secrets Manager by the CSI driver (see secret-provider.yaml)
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: web-bank-app-secrets
+                  key: db-password
           envFrom:
             - configMapRef:
                 name: web-bank-app-config
